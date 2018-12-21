@@ -18,14 +18,27 @@ fn main() {
     }
 
     let mut v = vec![1, 2, 3, 4, 5, 6];
-    let first = &v[0];
+    let first = &v[0]; //immut reference
     //v.push(7);
 
     for i in &v {
         println!("{}", i);
     }
 
-    for i in &mut v {
-        *i += 50;
+    //error mut reference
+    //for i in &mut v {
+        //*i += 50;
+    //}
+
+    enum SpreadsheetCell {
+        Int(i32),
+        Float(f64),
+        Text(String),
     }
+
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Text(String::from("blue")),
+        SpreadsheetCell::Float(11.11),
+    ];
 }
