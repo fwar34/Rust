@@ -21,10 +21,10 @@ fn foo(x: &En) {
         &Var3(x) => println!("third variant with number {} (not 5)", x),
         &Var4(3, St {f1: 3, f2: x}, 45) => {
             println!("destructuring an embedded struct, found {} in f2", x)
-        }
+        },
         &Var4(_, ref x, _) => {
             println!("Some other Var4 with {} in f1 and {} in f2", x.f1, x.f2)
-        }
+        },
         _ => println!("other (Var2)")
     }
 }
@@ -36,5 +36,5 @@ fn main() {
 
     let st = St {f1: 3, f2: 5.1};
     let en = En::Var4(3, st, 45);
-    foo(&en)
+    foo(&en);
 }
