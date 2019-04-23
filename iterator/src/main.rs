@@ -45,7 +45,8 @@ fn calling_next_directly() {
 //实例在省略了第一个值之后产生的值配对，将每一对值相乘，只保留那些可以被三整除的结果，然后将所有保留的结果相加，这可以如示例
 //13-23 中的测试这样做：
 fn using_other_iterator_trait_methods() {
-    let sum: u32 = Counter::new().zip(Counter::new().skip(1))
+    let sum: u32 = Counter::new()
+        .zip(Counter::new().skip(1))
         .map(|(a, b)| a * b)
         .filter(|x| x % 3 == 0)
         .sum();

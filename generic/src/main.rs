@@ -3,11 +3,11 @@ fn main() {
     let result = largest_i32(&number);
     println!("Largest num : {}", result);
 
-    let point1 = Point {x: 10, y: 11};
-    let point2 = Point {x: 1.0, y: 5.5};
+    let point1 = Point { x: 10, y: 11 };
+    let point2 = Point { x: 1.0, y: 5.5 };
 
-    let point3 = Point2 {x: 1, y: 5.6};
-    let point4 = Point2 {x: 5.3, y: 10};
+    let point3 = Point2 { x: 1, y: 5.6 };
+    let point4 = Point2 { x: 5.3, y: 10 };
 
     let p = Point { x: 5, y: 10 };
     println!("p.x = {}", p.x());
