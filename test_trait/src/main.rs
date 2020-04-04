@@ -1,3 +1,4 @@
+//https://zhuanlan.zhihu.com/p/75755125
 fn main() {
     let bird: FlyableBird = FlyableBird::new("test bird".to_string());
     eat_and_fly(&bird);
