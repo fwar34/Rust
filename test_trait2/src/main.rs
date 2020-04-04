@@ -1,3 +1,4 @@
+// https://zhuanlan.zhihu.com/p/76740667
 fn main() {
     println!("Hello, world!");
 }
@@ -19,6 +20,8 @@ impl Stream for Console {
 }
 
 impl Stream for FileStream { ... }
+
+let BUFFER_SIZE: u32 = 56635;
 
 fn some_algorithm_dynamic(stream: &mut dyn Stream) {
     let mut buffer = [0u8; BUFFER_SIZE];
