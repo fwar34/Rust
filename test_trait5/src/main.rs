@@ -9,11 +9,26 @@ fn main() {
     println!("Docked window: {:?}", window);
 }
 
-trait Layoutable {
-    fn position(&self) -> (f32, f32);
-    fn size(&self) -> (f32, f32);
-    fn set_position(&mut self, x: f32, y: f32);
-    fn set_size(&mut self, width: f32, height: f32);
+// trait Layoutable {
+//     fn position(&self) -> (f32, f32);
+//     fn size(&self) -> (f32, f32);
+//     fn set_position(&mut self, x: f32, y: f32);
+//     fn set_size(&mut self, width: f32, height: f32);
+// }
+
+macro_rules! impl_layoutable {
+    ($e: ty) => {
+        impl Layoutable for $e {
+            fn position(&self) -> (f32, f32) { self.pos }
+            fn size(&self) -> (f32, f32) { self.size }
+            fn set_position(&mut self, x: f32, y: f32) {
+                self.pos = (x, y)
+            }
+            fn set_size(&mut self, width: f32, height: f32) {
+                self.size = (width, height)
+            }
+        };
+    }
 }
 
 trait Dockable: Layoutable {
@@ -40,20 +55,22 @@ impl Widget {
     }
 }
 
-impl Layoutable for Widget {
-    fn position(&self) -> (f32, f32) {
-        self.pos
-    }
-    fn size(&self) -> (f32, f32) {
-        self.size
-    }
-    fn set_position(&mut self, x: f32, y: f32) {
-        self.pos = (x, y);
-    }
-    fn set_size(&mut self, width: f32, height: f32) {
-        self.size = (width, height);
-    }
-}
+impl_layoutable!(Widget);
+
+// impl Layoutable for Widget {
+//     fn position(&self) -> (f32, f32) {
+//         self.pos
+//     }
+//     fn size(&self) -> (f32, f32) {
+//         self.size
+//     }
+//     fn set_position(&mut self, x: f32, y: f32) {
+//         self.pos = (x, y);
+//     }
+//     fn set_size(&mut self, width: f32, height: f32) {
+//         self.size = (width, height);
+//     }
+// }
 
 impl Dockable for Widget {}
 
@@ -68,9 +85,11 @@ impl MarginWidget {
     /*...*/
 }
 
-impl Layoutable for MarginWidget {
-    /*...*/
-}
+// impl Layoutable for MarginWidget {
+//     /*...*/
+// }
+
+impl_layoutable!(MarginWidget);
 
 impl Dockable for MarginWidget {
     fn dock_left(&mut self, parent: &dyn Layoutable) {
