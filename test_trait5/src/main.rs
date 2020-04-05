@@ -72,4 +72,11 @@ impl Layoutable for MarginWidget {
     /*...*/
 }
 
-impl Dockable for MarginWidget {}
+impl Dockable for MarginWidget {
+    fn dock_left(&mut self, parent: &dyn Layoutable) {
+        let (width, _) = self.size();
+        let (_, height) = parent.size();
+        self.set_position(self.margin, self.margin);
+        self.set_size(width, height - 2f32 * self.margin);
+    }
+}
