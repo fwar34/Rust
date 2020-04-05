@@ -27,6 +27,17 @@ mod tests {
         let config = Config::new(path.to_string());
         assert_eq!(path, config.get_path())
     }
+
+    #[test]
+    fn test_config_into() {
+        let path = "./Cargo.toml";
+        let config = ConfigInto::new(path);
+        assert_eq!(path, config.get_path());
+
+        let path = "./Cargo.toml";
+        let config = ConfigInto::new(path.to_string());
+        assert_eq!(path, config.get_path())
+    }
 }
 
 struct ConfigInto {
