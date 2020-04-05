@@ -1,5 +1,8 @@
 fn main() {
-    println!("Hello, world!");
+    // let service = create_service();
+    let opt = Option::new(1, "hello");
+    let svc = Service::new(&opt);
+    println!("hello, {}", svc.name());
 }
 
 struct Option {
@@ -29,3 +32,8 @@ impl<'a> Service<'a> {
         self.option.some_string.clone()
     }
 }
+
+// fn create_service() -> Service { //compile error
+//     let opt = Option::new(1, "hello");
+//     Service::new(&opt);
+// }
