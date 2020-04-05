@@ -57,4 +57,19 @@ impl Layoutable for Widget {
 
 impl Dockable for Widget {}
 
-// #[derive(Copy, Clone, Debug)]
+#[derive(Copy, Clone, Debug)]
+struct MarginWidget {
+    pos: (f32, f32),
+    size: (f32, f32),
+    margin: f32,
+}
+
+impl MarginWidget {
+    /*...*/
+}
+
+impl Layoutable for MarginWidget {
+    /*...*/
+}
+
+impl Dockable for MarginWidget {}
