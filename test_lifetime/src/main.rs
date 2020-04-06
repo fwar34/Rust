@@ -33,7 +33,7 @@ impl<'a> Service<'a> {
     }
 }
 
-// fn create_service() -> Service { //compile error
+// fn create_service() -> Service { //compile error: missing lifetime specifier
 //     let opt = Option::new(1, "hello");
 //     Service::new(&opt);
 // }
