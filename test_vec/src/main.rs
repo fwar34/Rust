@@ -19,7 +19,7 @@ fn main() {
 
     let mut v = vec![1, 2, 3, 4, 5, 6];
     let first = &v[0]; //immut reference
-    //v.push(7);
+                       //v.push(7);
 
     for i in &v {
         println!("{}", i);
@@ -27,7 +27,7 @@ fn main() {
 
     //error mut reference
     //for i in &mut v {
-        //*i += 50;
+    //*i += 50;
     //}
 
     enum SpreadsheetCell {
