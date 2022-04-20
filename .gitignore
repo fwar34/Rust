@@ -7,3 +7,5 @@ GTAGS
 TAGS
 **/main
 *.~undo-tree~
+**/*.out
+**/qr_*.rs
