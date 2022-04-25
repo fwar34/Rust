@@ -1,19 +1,27 @@
-use std::env;
 use std::process;
 
+use minigrep::Config;
+
 fn main() {
-    let args: Vec<String> = env::args().collect();
-    run(config);
-}
+    let args: Vec<String> = std::env::args().collect();
+    println!("{:?}", args);
 
-struct Config {
-    query: String,
-    filename: String,
-}
+    // let config = match Config::new(&args) {
+    //     Ok(config) => config,
+    //     Err(e) => {
+    //         println!("{}", e);
+    //         return;
+    //     }
+    // };
+    let config = Config::new(&args).unwrap_or_else(|err| {
+        println!("Problem occur: {}", err);
+        process::exit(1);
+    });
+    println!("Searching for {}", config.query);
+    println!("In file {}", config.filename);
 
-fn run(config: Config) {
-    let contents = fs::read_to_string(config.filename)
-        .expect("something went wrong reading the file");
-    
-    println!("With text:\n{}", contents);
+    if let Err(e) = minigrep::run(config) {
+        println!("Application error: {}", e);
+        process::exit(1);
+    }
 }
