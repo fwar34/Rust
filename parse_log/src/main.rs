@@ -118,8 +118,8 @@ fn find_exit(
     userid: &String,
     log: &mut BufReader<File>,
     ret: &mut BufWriter<File>,
-) -> io::Result<bool> {
-    let re: Regex = Regex::new(
+) -> Result<(), Box<dyn std::error::Error>> {
+    let re = Regex::new(
         &(r"(\d{2}:\d{2}:\d{2}).*BMS user exit conference success.*".to_string() + &userid),
     )
     .unwrap();
@@ -132,11 +132,11 @@ fn find_exit(
                 // println!("{:?}", cap);
                 let data = format!("{} {}\n", userid, &cap[1]);
                 ret.write_all(data.as_bytes())?;
-                return Ok(true);
+                return Ok(());
             }
         }
     }
-    return Err(Error::new(ErrorKind::NotFound, "Not found!"));
+    return Err(Box::new(Error::new(ErrorKind::NotFound, "Not found!")));
 }
 
 fn find_offline(userid: &String, log: &mut BufReader<File>) -> io::Result<String> {
