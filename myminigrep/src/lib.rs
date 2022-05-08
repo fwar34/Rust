@@ -27,12 +27,12 @@ impl Config {
     }
 }
 
-pub fn fun(config: &Config) -> Result<(), Box<dyn Error>> {
+pub fn run(config: &Config) -> Result<(), Box<dyn Error>> {
     let contents = fs::read_to_string(&config.filename)?;
     let results = if config.sensitivity {
-        search_sensitive(&config.query, &contents);
+        search_sensitive(&config.query, &contents)
     } else {
-        search(&config.query, &contents);
+        search(&config.query, &contents)
     };
 
     for line in results {
