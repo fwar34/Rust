@@ -1,3 +1,4 @@
+// https://rustcc.gitbooks.io/rustprimer/content/module/module.html
 // 那么，Rust 的多层模块遵循如下两条规则：
 // 1. 优先查找xxx.rs 文件
 //  1) main.rs、lib.rs、mod.rs中的mod xxx; 默认优先查找同级目录下的 xxx.rs 文件；
