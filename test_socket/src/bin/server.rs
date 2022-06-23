@@ -1,7 +1,7 @@
 use std::{
     env::{args, Args},
     io::Read,
-    net::{SocketAddrV4, TcpListener},
+    net::TcpListener,
 };
 
 #[allow(unused)]
@@ -43,12 +43,13 @@ fn start_server(mut args: Args) -> Result<(), &'static str> {
     // let ip = config.ip.parse::<Ipv4Addr>().expect("Please use format xx.xx.xx.xx in ip");
     // let socket = SocketAddrV4::new(ip, config.port);
     args.next().unwrap(); // skip exe name
-    let socket: SocketAddrV4 = args
-        .next()
-        .expect("Please use 'exe ip:port' to start")
-        .parse()
-        .expect("Please use format xx.xx.xx.xx in ip");
-    let listener = TcpListener::bind(socket).expect("Create listener failed");
+                          // let socket: SocketAddrV4 = args
+                          //     .next()
+                          //     .expect("Please use 'exe ip:port' to start")
+                          //     .parse()
+                          //     .expect("Please use format xx.xx.xx.xx in ip");
+                          // let listener = TcpListener::bind(socket).expect("Create listener failed");
+    let listener = TcpListener::bind(args.next().unwrap_or("127.0.0.1:9999".to_string())).unwrap();
     println!("Start listen on {}:{}", socket.ip(), socket.port());
     let (mut tcp_stream, addr) = listener.accept().unwrap();
     println!("Receive connect from {:?}", addr);
